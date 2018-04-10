@@ -1,0 +1,299 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<title>Twidder</title>
+
+		<meta charset="utf-8">
+		<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+
+		<link href="css/client.css" type="text/css" rel="stylesheet">
+		<link href="css/welcome.css" type="text/css" rel="stylesheet">
+		<link href="css/home.css" type="text/css" rel="stylesheet">
+		<link href="css/browse.css" type="text/css" rel="stylesheet">
+		<link href="css/account.css" type="text/css" rel="stylesheet">
+		<link href="css/header.css" type="text/css" rel="stylesheet">
+		<link href="css/profile.css" type="text/css" rel="stylesheet">
+		<link href="css/messages.css" type="text/css" rel="stylesheet">
+		<link href="css/searchResult.css" type="text/css" rel="stylesheet">
+		<link href="css/toast.css" type="text/css" rel="stylesheet">
+
+		<script src="res/vagueTime.min.js"></script>
+
+		<script src="js/main.js"></script>
+		<script src="js/httpReq.js"></script>
+		<script src="js/server.js"></script>
+		<script src="js/socket.js"></script>
+		<script src="js/utils.js"></script>
+		<script src="js/userdata.js"></script>
+		<script src="js/view.js"></script>
+		<script src="js/toast.js"></script>
+
+		<!-- Libs -->
+		<script src="https://cdn.jsdelivr.net/npm/jdenticon@1.8.0" async></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.min.js" async></script>
+
+		<!-- Fonts -->
+		<link href="https://fonts.googleapis.com/css?family=Noto+Sans" rel="stylesheet">
+	</head>
+
+	<body>
+		
+		<!-- Welcome screen -->
+		<script type="text/view" id="welcomeView">
+			<div id="welcomeWrapper">
+				<img id="picture" src="images/wimage.png" />
+
+				<div id="inputWrap" class="smooth">
+					
+					<div id="signIn">
+						<form name="signInForm" action="javascript:signIn();">
+							<table>
+								<tr>
+									<td>Username</td>
+									<td><input type="text" name="email" required></td>
+								</tr>
+								<tr>
+									<td>Password</td>
+									<td><input type="password" name="password" required></td>
+								</tr>
+								<tr>
+									<td></td>
+									<td><input type="submit" value="Sign in"></td>
+								</tr>
+							</table>
+						</form>
+					</div>
+
+					<div id="signUp">
+						<h4>New to Twidder? Sign up</h4>
+						<form name="signUpForm" action="javascript:signUp();">
+							<table>
+								<tr>
+									<td>Username</td>
+									<td><input type="text" name="email" pattern="[A-Za-z0-9_\-\.]{3,}" title="Username may only contain letters and numbers, dash, underscore and period." maxlength="30" required></td>
+								</tr>
+								<tr>
+									<td>First name</td>
+									<td><input type="text" name="firstname" maxlength="30" required></td>
+								</tr>
+								<tr>
+									<td>Family name</td>
+									<td><input type="text" name="familyname" maxlength="30" required></td>
+								</tr>
+								<tr>
+									<td>Gender</td>
+									<td>
+										<select name="gender" style="width:100%;">
+											<option value="male">Male</option>
+											<option value="female">Female</option>
+											<option value="other">Other</option>
+										</select>
+									</td>
+								</tr>
+								<tr>
+									<td>City</td>
+									<td><input type="text" name="city" maxlength="30" required></td>
+								</tr>
+								<tr>
+									<td>Country</td>
+									<td><input type="text" name="country" maxlength="30" required></td>
+								</tr>
+								<tr>
+									<td>Password</td>
+									<td><input type="password" name="password" minlength="6" maxlength="30" required></td>
+								</tr>
+								<tr>
+									<td>Repeat PSW</td>
+									<td>
+										<input type="password" name="passwordRepeat" oninput="compareForm(this, document.forms['signUpForm']['password'], 'Password must be matching.')" maxlength="30" required />
+									</td>
+								</tr>
+								<tr>
+									<td></td>
+									<td><input type="submit" value="Sign up"></td>
+								</tr>
+							</table>
+						</form>
+					</div>
+							
+				</div>
+			</div>
+		</script>
+
+		<!-- Account screen -->
+		<script type="text/view" id="accountView">
+			<div id="accountWrapper">
+				<div id="accountContent" class="smooth">
+
+					<div id="profileInfo"></div>
+
+					<div class="settingsWrapper">
+						<h3>Statistics</h3>
+						<canvas id="myChart" width="400" height="100"></canvas>
+
+						<hr>
+
+						<form name="changePasswordForm" id="changePasswordForm" action="javascript:changePassword();">
+							<h3>Password</h3>
+							<table class="compactTable">
+								<tr>
+									<td>Current password</td>
+									<td><input type="password" name="current" required></td>
+								</tr>
+								<tr>
+									<td>New password</td>
+									<td><input type="password" name="new" required minlength="6"></td>
+								</tr>
+								<tr>
+									<td>Verify password</td>
+									<td><input type="password" name="repeat" required oninput="compareForm(this, document.forms['changePasswordForm']['new'], 'Password must be matching.')" ></td>
+								</tr>
+								<tr>
+									<td></td>
+									<td><input type="submit" value="Save changes"></td>
+								</tr>
+							</table>
+						</form>
+
+						<hr>
+
+						<table class="compactTable">
+							<h3>Sign out</h3>
+							<tr>
+								<td></td>
+								<td><button onclick="signOut();">Sign out</button></td>
+							</tr>
+						</table>
+
+					</div>
+				</div>
+			</div>
+		</script>
+
+		<!-- Home screen -->
+		<script type="text/view" id="homeView">
+			<div id="homeWrapper">
+				<div id="homeContent">
+
+					<div id="profileInfo"></div>
+
+					<div class="messagingWrapper">
+
+						<div id="msgInputWrapper">
+							<form name="msgInputForm" action="javascript:postMessage();">
+								<input id="msgInput" type="text" name="message" autocomplete="off" placeholder="Leave a message" minlength="1" maxlength="500">
+								<input type="submit" value="Send">
+							</form>
+
+							<button id="msgRefresh" onclick="loadMessages(getProfileUser()); showToast('Refresh');">&#10227;</button>
+						</div>
+
+						<div id="messages" onscroll="dynamicMessageLoading();"></div>
+						
+					</div>
+				</div>
+			</div>
+		</script>
+
+		<!-- Browse screen -->
+		<script type="text/view" id="browseView">
+			<div id="browseWrapper">
+				<div id="browseContent" class="smooth">
+
+					<form name="searchUserForm" id="searchUserForm" action="javascript:searchUsers();">
+						<h3>Find user</h3>
+						<table class="compactTable">
+							<tr>
+								<td>Search user</td>
+								<td><input type="text" name="query" required></td>
+							</tr>
+						</table>
+						<input type="submit" value="Search">
+					</form>
+
+					<div id="searchResults"></div>
+
+				</div>
+			</div>
+		</script>
+
+		<!-- Header with tabs -->
+		<script type="text/view" id="headerTemplate">
+			<div class="headerBox">
+				<div class="tabs">
+					<button id="homeButton" class="tablinks clickable" onclick="displayHome();">
+						<span class="notificationDot">0</span>
+						<img src="images/home.svg" />
+						Home
+					</button>
+					<button id="browseButton" class="tablinks clickable" onclick="displayBrowse();">
+						<img src="images/magnify.svg" />
+						Browse
+					</button>
+					<!--<button class="tablinks clickable" onclick="displayAccount();">Account</button>-->
+				</div>
+				<div id="currentAccount" class="clickable" onclick="displayAccount();">
+					<span class="headerName">Logged in as {name}</span>
+					<img class="headerAvatar" src="" width="35" height="35" />
+				</div>
+			</div>
+		</script>
+
+		<!-- Account information box -->
+		<script type="text/view" id="profileInfoTemplate">
+			<div class="smooth">
+				<div class="avatarBox">
+					<div class="profileTop"></div>
+					<img class="profileAvatar" src="" width="100" height="100" />
+					<span class="onlineStatus"></span>
+					<span class="profileName">{firstname} {familyname}</span>
+				</div>
+				<table>
+					<tr><td>Username</td>	<td class="accountEmail">{email}</td>		</tr>
+					<tr><td>Gender</td>		<td class="accountGender">{gender}</td>		</tr>
+					<tr><td>Country</td>	<td class="accountCountry">{country}</td>	</tr>
+					<tr><td>City</td>		<td class="accountCity">{city}</td>			</tr>
+					<tr><td>Joined</td>		<td class="accountRegister">{date}</td>		</tr>
+				</table>
+			</div>
+		</script>
+
+		<!-- One message box -->
+		<script type="text/view" id="msgTemplate">
+			<hr>
+			<div class="msgBox">
+				<img class="msgAvatar" src="" width="44" height="44" />
+				<div class="msgContent">
+					<div class="msgHeader">
+						<span class="msgName">{name}</span>
+						<span class="msgTime">{time}</span>
+					</div>
+					<span class="msgText">{content}</span>
+				</div>
+			</div>
+		</script>
+
+		<!-- One search result box -->
+		<script type="text/view" id="searchResultTemplate">
+			<hr>
+			<div class="searchResultBox">
+				<img class="msgAvatar" src="" width="44" height="44" />
+
+				<div class="msgContent">
+					<div class="msgHeader">
+						<span class="msgName">{name}</span>
+						<span class="msgTime">{time}</span>
+					</div>
+					<span class="msgText">{content}</span>
+				</div>
+			</div>
+		</script>
+
+
+		<div id="header"></div>
+		<div id="view"></div>
+
+		<div id="toast" onclick="closeToast();">Message.</div>
+
+	</body>
+</html>

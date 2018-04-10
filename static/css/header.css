@@ -1,0 +1,108 @@
+/* Header wrapper */
+
+#header {
+	width: 100%;
+
+	background: white;
+	position: fixed;
+	top: 0;
+	right: 0;
+	left: 0;
+}
+
+.headerBox {
+	display: flex;
+	justify-content: space-between;
+	
+	width: 1000px;
+	height: 48px;
+	margin: 0 auto;
+
+	background: white;
+}
+
+
+/* Tab button */
+
+.tabs {
+	display: flex;
+	align-items: center;
+}
+
+.tabs button {
+	line-height: 48px;
+	padding: 0 10px;
+	align-self: flex-start;
+
+	background: none;
+	border: none;
+	outline: none;
+
+	font-size: 16px;
+	font-weight: bold;
+	color: #3d5877;
+
+	display: flex;
+	position: relative;
+	align-items: center;
+}
+
+.tabs button:active {
+	color: black;
+}
+
+.tabs button img {
+	opacity: 0.3;
+	height: 34px;
+	padding-right: 4px;
+}
+
+.selected {
+	border-bottom: inset 4px #6998ce !important;
+}
+
+
+/* Header account info */
+
+#currentAccount {
+	display: flex;
+	align-items: center;
+
+	height: 48px;
+}
+
+.headerAvatar {
+	padding: 0 10px;
+}
+
+.headerName {
+	line-height: 48px;
+	padding: 0 10px;
+
+	font-size: 16px;
+	font-weight: bold;
+	color: #3d5877;
+}
+
+
+/* Notification */
+
+.notificationDot {
+	position: absolute;
+	left: 2px;
+	top: 2px;
+
+	background: red;
+	width: 19px;
+	height: 19px;
+	border-radius: 35%;
+
+	color: white;
+	font-size: 13px;
+	font-weight: bold;
+	text-align: center;
+	vertical-align: middle;
+	line-height: 19px;
+
+	visibility: hidden;
+}

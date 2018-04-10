@@ -1,0 +1,20 @@
+/* Account view */
+
+#accountWrapper {
+	width: 1000px;
+	margin: 0 auto;
+}
+
+#accountContent {
+	display: flex;
+	align-items: flex-start;
+	align-content: flex-start;
+}
+
+.settingsWrapper {
+	background: white;
+	width: 100%;
+	padding: 15px;
+
+	text-align: left;
+}

@@ -1,0 +1,19 @@
+/* Search results container in browse */
+
+#searchResults {
+	min-height: 300px;
+	max-height: 600px;
+	overflow: auto;
+	text-align: center;
+}
+
+
+/* One search result box */
+
+.searchResultBox {
+	display: flex;
+	background: white;
+	padding: 5px;
+	text-align: left;
+	font-size: 16px;
+}

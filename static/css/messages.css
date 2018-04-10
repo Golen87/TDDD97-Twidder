@@ -1,0 +1,86 @@
+/* Wrapper for messaging, input area and field for messages */
+
+.messagingWrapper {
+	background: white;
+	width: 100%;
+}
+.messagingWrapper hr {
+	margin: 0;
+}
+#messages {
+	min-height: 300px;
+	max-height: 600px;
+	overflow: auto;
+	text-align: center;
+	width: inherit;
+}
+
+
+/* Input area */
+
+#msgInputWrapper {
+	display: flex;
+}
+
+form[name="msgInputForm"] {
+	display: flex;
+	flex-grow: 1;
+	border: 2px solid #aaa;
+	border-radius: 4px;
+	margin: 4px;
+}
+form[name="msgInputForm"] input[type=submit] {
+	border-left: 2px solid #aaa;
+}
+form[name="msgInputForm"] input {
+	font-size: 16px;
+	padding: 6px;
+	border: 0;
+}
+
+#msgInput {
+	width: 100%;
+}
+
+#msgRefresh {
+	margin: 4px;
+	border: 2px solid #aaa;
+	border-radius: 4px;
+	font-size: 20px;
+}
+
+
+/* One message box */
+
+.msgBox {
+	display: flex;
+	padding: 5px;
+	text-align: left;
+	font-size: 16px;
+}
+
+.msgAvatar {
+	align-self: flex-start;
+	background: none;
+}
+
+.msgContent {
+	width: 90%;
+	display: block;
+	margin-left: 10px;
+}
+
+.msgHeader {
+}
+
+.msgName {
+	font-weight: bold;
+}
+
+.msgTime {
+	color: gray;
+}
+
+.msgText {
+	word-break: break-all;  
+}

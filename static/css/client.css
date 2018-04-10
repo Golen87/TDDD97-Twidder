@@ -1,0 +1,58 @@
+body {
+	text-align: center;
+	padding-top: 70px;
+
+	font-family: 'Noto Sans', sans-serif;
+
+	background-color: #6998ce;
+	background-color: #e6ecf0;
+	background-color: #cedde8;
+	background-image: url("../images/connected.png");
+}
+
+.smooth td:first-child {
+	width: 100px;
+}
+.smooth h4 {
+	margin: 0 0 1em;
+}
+.smooth input, .smooth select, .smooth button {
+	border-radius: 4px;
+	font-family: 'Noto Sans', sans-serif;
+}
+.smooth form {
+	margin-bottom: 0;
+}
+.smooth input[type=submit], .smooth button {
+	font-weight: bold;
+}
+
+/* Clickable div */
+
+.clickable {
+	cursor: pointer;
+}
+
+.clickable:hover {
+	background: #dbebff;
+}
+
+
+/* Right-aligned table */
+
+.compactTable td:first-child {
+	width: 150px;
+	text-align: right;
+}
+
+
+/* Flash animation (for new messages) */
+
+.flash {
+	animation-name: colorFlash;
+	animation-duration: 2s;
+}
+@keyframes colorFlash {
+    from {background-color: #ffa;}
+    to {background-color: white;}
+}

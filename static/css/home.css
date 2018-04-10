@@ -1,0 +1,12 @@
+/* Home view */
+
+#homeWrapper {
+	width: 1000px;
+	margin: 0 auto;
+}
+
+#homeContent {
+	display: flex;
+	align-items: flex-start;
+	align-content: flex-start;
+}

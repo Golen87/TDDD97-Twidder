@@ -1,0 +1,27 @@
+/* Welcome view */
+
+#welcomeWrapper {
+	#width: 630px;
+	height: 400px;
+	display: flex;
+	justify-content: center;
+	margin: 0 auto;
+}
+
+#picture {
+	width: 340px;
+	background: white;
+	margin-right: 10px;
+}
+
+#inputWrap input, #inputWrap select {
+	float: right;
+}
+
+#signIn {
+	margin-bottom: 10px;
+}
+
+#signIn, #signUp {
+	background: white;
+}
